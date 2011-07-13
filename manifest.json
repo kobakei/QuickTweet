@@ -1,0 +1,18 @@
+{
+	"name": "QuickTweet",
+	"version": "0.1",
+		
+	"description": "現在閲覧中のサイトのタイトル・URLをツイートします",
+	"icons": {	"48":  "icon48.png",
+				"128": "icon128.png"},
+	"permissions": [
+		"tabs",
+		"https://www.googleapis.com/*"
+	],
+	
+	"browser_action": {
+		"default_icon": "icon48.png",
+		"default_title": "QuickTweet",
+		"popup": "popup.html"
+	}
+}

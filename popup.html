@@ -1,0 +1,42 @@
+
+<script type="text/javascript">
+<!--
+function create() {
+
+	chrome.tabs.getSelected(null, function(tab){
+
+		var api_url = "https://www.googleapis.com/urlshortener/v1/url";
+
+		var title = encodeURI(tab.title);
+		var sourceUrl = encodeURI(tab.url);
+
+		var xhr = new XMLHttpRequest();
+		if (xhr) {
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+
+					shortUrl = JSON.parse(xhr.responseText).id;
+					
+					// ƒ^ƒu‚ðŠJ‚¢‚ÄTwitter‚Ö
+					var status = title + " " + shortUrl;
+					var pageUrl = "http://twitter.com/?status=" + status;
+					var param = {
+						"url": pageUrl
+					};
+					chrome.tabs.create(param, null);
+				} else {
+					//alert("Response ERROR");
+				}
+			};
+		}
+		
+		xhr.open("POST", api_url);
+		xhr.setRequestHeader("Content-Type" , "application/json");
+		xhr.send("{longUrl: '" + sourceUrl + "'}");
+	});
+}
+
+create();
+
+//-->
+</script>
